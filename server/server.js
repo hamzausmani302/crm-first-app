@@ -9,6 +9,9 @@ exports = {
    * - If Webhook URL generation fails or some error occurs in setup, use `renderData({message: "<Message_text>"});` to disallow installation
    * @param {Object} payload
    */
+
+  
+
   onAppInstallCallback: function (payload) {
     console.log("Logging arguments from onAppInstallevent : " + JSON.stringify(payload));
     generateTargetUrl()

@@ -10,6 +10,9 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
       <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
       <link rel="stylesheet" type="text/css" href="./assets/iparams.css">
+      <script  src="./assets/utils.js" ></script>
+    <script type="module" src="https://unpkg.com/@freshworks/crayons@v3/dist/crayons/crayons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/@freshworks/crayons@v3/dist/crayons/crayons.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -27,8 +30,21 @@
         
    } 
    function validate(){
+    // type_toast
+    
     console.log("validation" , KEY ,EMAIL , PASSWORD)
-        return (KEY && EMAIL && PASSWORD)
+        const result = (KEY && EMAIL && PASSWORD)
+        console.log("r",result);
+        if(result){
+            showToast("success" , "Ready to download")
+            return true;
+        
+        }
+        showToast("error" , "Data not complete")
+        return false;
+        
+        
+        return 
     }
   function postConfigs() {
         console.log("post config ")
@@ -51,9 +67,11 @@ function licenseAuth(){
     if(key == "123"){
         $("#install-div").hide()
         $("#final-div").show()
+        showToast("success" , "Logged in successful")
         KEY = key
+        
     } else{
-
+        showToast("error" , "Key is incorrect")
     }
 }
 function authenticate(){
@@ -61,26 +79,23 @@ function authenticate(){
     const password = $("#password").val();
     console.log(email , password);
     if(email == '123' && password == '123'){
-        alert("login successful");
-        // document.getElementById("install-div").innerHTML += template;
+        
         $("#login-div").hide()
         $("#install-div").show()
         EMAIL=  email;
         PASSWORD = password
-        setTimeout(()=>{
-            $("#login-msg").hide()
-        
-        },2000)
+        showToast("success" , "Logged in successful")
         
     }else{
-        alert("incorrect credentials");
+        showToast("error" , "Incorrect username or password")
     }
 
 }
   
-  const template= "data";
+
  
     </script>
+    
     
     <div  id="final-div" style="display: none;">
         READY TO DOWNLOAD
@@ -110,6 +125,6 @@ function authenticate(){
             <button onclick="authenticate()" style="margin: 10px;"  >SUBMIT</button>
       
     </div>
-   
+    <fw-toast id="type_toast" ></fw-toast>
 </body>
 </html>
