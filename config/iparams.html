@@ -27,7 +27,7 @@
         
    } 
    function validate(){
-    console.log("validation")
+    console.log("validation" , KEY ,EMAIL , PASSWORD)
         return (KEY && EMAIL && PASSWORD)
     }
   function postConfigs() {
@@ -48,7 +48,7 @@
 function licenseAuth(){
     const key =$("#license-key").val()
     console.log("key",key)
-    if(key == 123){
+    if(key == "123"){
         $("#install-div").hide()
         $("#final-div").show()
         KEY = key
@@ -66,7 +66,7 @@ function authenticate(){
         $("#login-div").hide()
         $("#install-div").show()
         EMAIL=  email;
-      
+        PASSWORD = password
         setTimeout(()=>{
             $("#login-msg").hide()
         
